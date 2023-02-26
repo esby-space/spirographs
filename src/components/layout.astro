@@ -8,6 +8,8 @@ const { title = "An Exploration into Spirographs" } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
+
+        <script src="https://www.geogebra.org/apps/deployggb.js"></script>
         <title>{title}</title>
     </head>
 
@@ -15,16 +17,25 @@ const { title = "An Exploration into Spirographs" } = Astro.props;
         <slot />
 
         <style>
+            @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;700&display=swap");
+
             *,
             *::before,
             *::after {
                 box-sizing: border-box;
             }
 
+            [hidden],
+            [aria-hidden="true"] {
+                display: none !important;
+            }
+
             body {
                 margin: 0;
                 padding: 0;
-                font-family: sans-serif;
+                font-family: "Noto-sans", sans-serif;
+                font-size: 24px;
+                font-weight: 300;
             }
         </style>
     </body>
