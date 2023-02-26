@@ -1,0 +1,17 @@
+---
+import Layout from "./layout.astro"
+---
+
+<Layout>
+    <main>
+        <slot />
+    </main>
+</Layout>
+
+<style>
+    main {
+        margin-inline: auto;
+        width: calc(100% - 8rem);
+        max-width: 800px;
+    }
+</style>
