@@ -10,10 +10,16 @@ import Nav from "./nav.astro";
     <Nav />
 </Layout>
 
-<style>
+<style is:global>
     main {
         margin-inline: auto;
+        margin-block: 4rem;
         width: calc(100% - 8rem);
         max-width: 800px;
+    }
+
+    .math-display {
+        display: grid;
+        place-content: center;
     }
 </style>

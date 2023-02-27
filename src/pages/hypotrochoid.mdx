@@ -10,6 +10,8 @@ The first thing you might do when given a spirograph is revolving the little gea
 
 It looks like changing the size of the fixed gear, the size of the rolling gear, and the position where the pen is placed changes its shape. So how can we describe this mathematically? The first step is to make some assumptions: we assume that the gears can be modeled as wheels with a specific circumference. The makers of the spirograph likely chose teeth to prevent slipping, but in our mathematical utopia, that is not a problem. Notice now we are describing a hypotrochoid, where the rolling circle is inside of the fixed circle.
 
+## Setting Up Our Diagram
+
 <img src="/spirographs/assets/inner1.jpg" width="800" />
 
 In this diagram, let:
@@ -28,47 +30,112 @@ Right, let's roll the movable circle inside the fixed circle an angle $\alpha$:
 
 Notice how all of the points that have been moved now have a subscript of 1. Our goal now is to describe the position of point $P$ given an angle $\alpha$. To do this, we can use parametric equations! If point $F$ is at the origin, all we need to do is find coordinates of point $P$.
 
-But for this we need some more information! Let's draw a line parallel to $\overline{FA}$ going through point $M$ and another through point $P$, and drop the heights from point $P$ and $M$.
+But for this we need some more information! Let's draw a line parallel to $\overline{FA}$ going through point $P$, and drop the heights from point $P$ and $M_1$.
 
 <img src="/spirographs/assets/inner3.jpg" width="800" />
 
 Now, let
 
--   $T$ be the point where the dropped height from $M$ meets $\overline{FA}$
+-   $T$ be the point where the dropped height from $M_1$ meets $\overline{FA}$
 -   $S$ be the point where the dropped height from $P_1$ meets $\overline{FA}$
 -   $U$ be the point where the the line parallel to $\overline{FA}$ from $P_1$ meets $\overline{MT}$
 -   $\beta$ be the $\angle UMP_1$.
 
+## Finding the Pen
+
 Now notice that the x-coordinate of $P_1$ is $FS$, while the y-coordinate is $SP_1$
 
 $$
-\begin{align*}
+\begin{align}
 P_x &= FS \\
-P_y &= P_1S
-\end{align*}
+P_y &= P_1S \\
+\end{align}
 $$
 
 Since $UTSP_1$ makes a rectangle, then $P_1S = UT$ and $P_1U = ST$.
 
 $$
-\begin{align*}
-P_x &= FS \\
-    &= FT - ST \\
+\begin{align}
+P_x &= FT - ST \\
     &= FT - P_1U \\
-
-P_y &= UT \\
-    &= MT - MU
-\end{align*}
+P_y &= M_1T - MU \\
+\end{align}
 $$
 
-Now, recognizing that $\triangle FTM_1$ and $\triangle P_1UM$ are both right triangles (since we all we did is drop the height), we can use trigonometry to find some of these lengths.
+Now, recognizing that $\triangle FTM_1$ and $\triangle P_1UM_1$ are both right triangles (since we all we did is drop the height), we can use trigonometry to find some of these lengths.
 
 $$
-\begin{align*}
-P_x &= FT - P_1U \\
-    &= FMcos(\alpha) - Dsin(\beta) \\
+\begin{align}
+P_x &= FMcos(\alpha) - Dsin(\beta) \\
+P_y &= FMsin(\alpha) - Dcos(\beta) \\
+\end{align}
+$$
 
-P_y &= MT - MU \\
-    &= FMsin(\alpha) - Dcos(\beta) \\
-\end{align*}
+Length $FM$ is simply the difference between the radius of the fixed wheel and the radius of the moving wheel.
+
+$$
+\begin{align}
+P_x &= (R - r)cos(\alpha) - Dsin(\beta) \\
+P_y &= (R - r)cos(\alpha) - Dcos(\beta) \\
+\end{align}
+$$
+
+## Calculating $\beta$
+
+We're getting so close! But what is $\beta$? There's one fact that we have to use: the movable circle is _rolling_ inside the fixed circle. That means that the distance travelled along the fixed circle should equal the distance travelled along the rotating circle.
+
+<img src="/spirographs/assets/inner4.jpg" width="800" />
+
+Looking at the diagram, we can see that the above statement is equivalent to saying that:
+
+$$
+|\overset{\huge\frown}{AC_1}| = |\overset{\huge\frown}{B_1C_1}|
+$$
+
+To help solve this, let's draw a line parallel to $\overline{FA}$ going through point $M_1$ and call the point where this line intersect circle $F$ point $E$. Since lines $FA$ and $M_1E$ are both parallel, we know that $m\angle C_1M_1E = m\angle M_1FA$ (thanks [Euclid's Propisition 1.29](http://aleph0.clarku.edu/~djoyce/elements/bookI/propI29.html)).
+
+$$
+\begin{align}
+2\pi R\frac{m\angle M_1FA}{2\pi} &= 2\pi r\frac{m\angle C_1M_1B_1}{2 \pi} \\
+\alpha R &= r(m\angle C_1M_1E + \frac{\pi}{2} + m\angle TM_1B_1) \\
+\alpha R &= r(\alpha + \beta + \frac{\pi}{2}) \\
+\frac{\alpha R}{r} &= \alpha + \beta + \frac{\pi}{2} \\
+\beta &= \frac{\alpha R}{r} - \alpha - \frac{\pi}{2} \\
+\beta &= \alpha\frac{R - r}{r} - \frac{\pi}{2}
+\end{align}
+$$
+
+Now we can substitute $\beta$ in for our parametric equations. Don't forget your trig identities!
+
+$$
+\begin{align}
+sin(-\theta) &= -sin(\theta) \\
+cos(-\theta) &= cos(\theta) \\
+sin(\frac{\pi}{2} - \theta) &= cos(\theta) \\
+cos(\frac{\pi}{2} - \theta) &= sin(\theta)
+\end{align}
+$$
+
+$$
+\begin{align}
+P_x &= (R - r)cos(\alpha) - Dsin(\alpha\frac{R - r}{r} - \frac{\pi}{2}) \\
+    &= (R - r)cos(\alpha) + Dsin(\frac{\pi}{2} - \alpha\frac{R - r}{r}) \\
+    &= (R - r)cos(\alpha) + Dcos(\alpha\frac{R - r}{r}) \\
+P_y &= (R - r)cos(\alpha) - Dcos(\alpha\frac{R - r}{r} - \frac{\pi}{2}) \\
+    &= (R - r)cos(\alpha) - Dcos(\frac{\pi}{2} - \alpha\frac{R - r}{r}) \\
+    &= (R - r)cos(\alpha) - Dsin(\alpha\frac{R - r}{r}) \\
+\end{align}
+$$
+
+That's it! That's our final equation!! Let's plug it into Desmos and see what we get:
+
+## Making Our Equations more Practical
+
+Now this mathematical utopia is nice, but if you have a spirograph kit, nothing can beat drawing it out yourself. Many spirograph kits will tell you the number of teeth on every gear, as well as different numbers for all of the holes. Instead of needing to take out a ruler every time you want to model your spirograph, we can change our equations to fit these numbers.
+
+$$
+\begin{align}
+P_x &= (R - r)cos(\alpha) + N\frac{H + 1 - P}{H + 1}cos(\alpha\frac{R - r}{r}) \\
+P_y &= (R - r)cos(\alpha) - N\frac{H + 1 - P}{H + 1}sin(\alpha\frac{R - r}{r}) \\
+\end{align}
 $$
