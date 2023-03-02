@@ -2,6 +2,8 @@
 layout: ../components/page.astro
 ---
 
+import Desmos from "../components/desmos.astro";
+
 # Chapter 1
 
 ## Round and Round Again
@@ -12,7 +14,7 @@ It looks like changing the size of the fixed gear, the size of the rolling gear,
 
 ## Setting Up Our Diagram
 
-<img src="/spirographs/assets/inner1.jpg" width="800" />
+<img src="/spirographs/assets/inner1.jpg" />
 
 In this diagram, let:
 
@@ -26,13 +28,13 @@ In this diagram, let:
 
 Right, let's roll the movable circle inside the fixed circle an angle $\alpha$:
 
-<img src="/spirographs/assets/inner2.jpg" width="800" />
+<img src="/spirographs/assets/inner2.jpg" />
 
 Notice how all of the points that have been moved now have a subscript of 1. Our goal now is to describe the position of point $P$ given an angle $\alpha$. To do this, we can use parametric equations! If point $F$ is at the origin, all we need to do is find coordinates of point $P$.
 
 But for this we need some more information! Let's draw a line parallel to $\overline{FA}$ going through point $P$, and drop the heights from point $P$ and $M_1$.
 
-<img src="/spirographs/assets/inner3.jpg" width="800" />
+<img src="/spirographs/assets/inner3.jpg" />
 
 Now, let
 
@@ -76,7 +78,7 @@ Length $FM$ is simply the difference between the radius of the fixed wheel and t
 $$
 \begin{align}
 P_x &= (R - r)cos(\alpha) - Dsin(\beta) \\
-P_y &= (R - r)cos(\alpha) - Dcos(\beta) \\
+P_y &= (R - r)sin(\alpha) - Dcos(\beta) \\
 \end{align}
 $$
 
@@ -84,7 +86,7 @@ $$
 
 We're getting so close! But what is $\beta$? There's one fact that we have to use: the movable circle is _rolling_ inside the fixed circle. That means that the distance travelled along the fixed circle should equal the distance travelled along the rotating circle.
 
-<img src="/spirographs/assets/inner4.jpg" width="800" />
+<img src="/spirographs/assets/inner4.jpg" />
 
 Looking at the diagram, we can see that the above statement is equivalent to saying that:
 
@@ -121,21 +123,31 @@ $$
 P_x &= (R - r)cos(\alpha) - Dsin(\alpha\frac{R - r}{r} - \frac{\pi}{2}) \\
     &= (R - r)cos(\alpha) + Dsin(\frac{\pi}{2} - \alpha\frac{R - r}{r}) \\
     &= (R - r)cos(\alpha) + Dcos(\alpha\frac{R - r}{r}) \\
-P_y &= (R - r)cos(\alpha) - Dcos(\alpha\frac{R - r}{r} - \frac{\pi}{2}) \\
-    &= (R - r)cos(\alpha) - Dcos(\frac{\pi}{2} - \alpha\frac{R - r}{r}) \\
-    &= (R - r)cos(\alpha) - Dsin(\alpha\frac{R - r}{r}) \\
+P_y &= (R - r)sin(\alpha) - Dcos(\alpha\frac{R - r}{r} - \frac{\pi}{2}) \\
+    &= (R - r)sin(\alpha) - Dcos(\frac{\pi}{2} - \alpha\frac{R - r}{r}) \\
+    &= (R - r)sin(\alpha) - Dsin(\alpha\frac{R - r}{r}) \\
 \end{align}
 $$
 
 That's it! That's our final equation!! Let's plug it into Desmos and see what we get:
 
+<Desmos link="https://www.desmos.com/calculator/rwvuvz3oys" />
+
 ## Making Our Equations more Practical
 
-Now this mathematical utopia is nice, but if you have a spirograph kit, nothing can beat drawing it out yourself. Many spirograph kits will tell you the number of teeth on every gear, as well as different numbers for all of the holes. Instead of needing to take out a ruler every time you want to model your spirograph, we can change our equations to fit these numbers.
+Now this mathematical utopia is nice, but if you have a spirograph kit, nothing can beat drawing it out yourself. Many spirograph kits will tell you the number of teeth on every gear, as well as different numbers for all of the holes. Instead of needing to take out a ruler every time you want to model your spirograph, we can change our equations to fit these numbers. Here is a diagram of what a rotating gear for our spirograph kit looks like:
+
+<img src="/spirographs/assets/inner5.jpg" />
+
+Notice how the holes are in a spiral with the numbers counting up as you get closer to the center. Even though their in a spiral, the only variable about these holes that matters is the distance to the center of the circle. This means we can also model these gears as:
+
+<img src="/spirographs/assets/inner6.jpg" />
+
+Now we can substitute $D=N\frac{H + 1 - P}{H + 1}$. Another thing to note, if we scale $R$ and $r$ by an equal amount, then the graph itself will get bigger but shape won't change. This means that you can replace $R$ with the number of teeth of the outer wheel, and $r$ with the number of teeth on the rotating wheel and the equation will still work!
 
 $$
 \begin{align}
 P_x &= (R - r)cos(\alpha) + N\frac{H + 1 - P}{H + 1}cos(\alpha\frac{R - r}{r}) \\
-P_y &= (R - r)cos(\alpha) - N\frac{H + 1 - P}{H + 1}sin(\alpha\frac{R - r}{r}) \\
+P_y &= (R - r)sin(\alpha) - N\frac{H + 1 - P}{H + 1}sin(\alpha\frac{R - r}{r}) \\
 \end{align}
 $$
