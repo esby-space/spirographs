@@ -1,4 +1,4 @@
-<nav>
+<nav hidden>
     <h3>Chapters</h3>
     <li><a href="/spirographs/">Introduction</a></li>
     <li><a href="/spirographs/hypotrochoid">Round and Round Again</a></li>
@@ -8,7 +8,7 @@
     <li><a href="/spirographs/credits">Credits and Shoutouts</a></li>
 </nav>
 
-<button id="show" hidden>Show Chapters</button>
+<button id="show"><strong>Chapters</strong></button>
 
 <style>
     nav,
@@ -34,13 +34,20 @@
     }
 
     nav li {
-        list-style: circle;
         margin-block: 0.5rem;
+    }
+
+    nav li:hover {
+        color: deeppink;
     }
 
     nav a {
         text-decoration: none;
         color: black;
+    }
+
+    button {
+        cursor: pointer;
     }
 </style>
 
@@ -49,13 +56,11 @@
     const title = nav.querySelector("h3");
     const hide = document.querySelector("#show");
 
-    title.onclick = () => {
-        hide.hidden = false;
-        nav.hidden = true;
+    const toggle = () => {
+        hide.hidden = !hide.hidden;
+        nav.hidden = !nav.hidden;
     };
 
-    hide.onclick = () => {
-        hide.hidden = true;
-        nav.hidden = false;
-    };
+    title.onclick = toggle;
+    hide.onclick = toggle;
 </script>
