@@ -3,7 +3,6 @@ layout: ../components/page.astro
 ---
 
 import Desmos from "../components/desmos.astro";
-import Hints from "../components/hints1.astro";
 
 # Chapter 2
 
@@ -38,11 +37,34 @@ Here's that old Desmos from last time. See if you can find out how to get the ro
 
 <Desmos link="https://www.desmos.com/calculator/tkzrntuzyp" />
 
-<Hints />
+<details>
+    <summary>Hint 1</summary>
+    Remember that the radius of the rotating wheel $r$ is the only variable that needs to change.
+</details>
+<details>
+    <summary>Hint 2</summary>
+    Making the radius of the rotating wheel bigger ins't going to work. What else can we do with the radius?
+</details>
+<details>
+    <summary>Answer</summary>
+    Try making $r$ negative and play around with $T$! See what happens!
+</details>
 
 Ok! So making the radius negative is the same as moving the rotating wheel on the outside of the fixed wheel. But why does this work?
 
-[explain why using Nancy's diagrams]
+To gain some intuition for why this might be true, let's graph both the hypotrochoid and epitrochoid of the same track on the same Desmos.
+
+<Desmos link="https://www.desmos.com/calculator/xnkghqagw2" />
+
+You might notice some things:
+
+1. The wheels rotate in opposite directions.
+    - This makes sense since they're making contact on 2 different sides of the track.
+2. They stick together through thick and thin.
+    - This is a consequence of how we're defining our parametric equation. Both wheels are given the same $\alpha$ (the rotation of the rotating wheel around the track).
+    - For us, this means that for any given $\alpha$, the amount of track covered for both wheels is the same.
+3. They both rotate the same amount.
+    - Remember in Chapter 1 how we said that the rotation of the tracing circle is based on the amount of track covered? Based off of our last observation, this means that both wheels rotate the same amount.
 
 ## From a Negative Radius
 

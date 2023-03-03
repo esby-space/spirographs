@@ -2,8 +2,100 @@
 layout: ../components/page.astro
 ---
 
+import Desmos from "../components/desmos.astro";
+
 # Chapter 3
 
 ## Around an Elliptal World
 
-Be warned fellow traveller. In this chapter, we venture outside the world of the spirograph into that mysterious and frequently terrifying world of theory. First, we will explore a way of apporximating the path traced by a spirograph with an elliptical track. But in the next chapter, we will not only make this approximation exact, we can generalize our equations to make a spirograph with any track imaginable.
+**Be warned fellow traveller.** In this chapter, we venture outside the world of the spirograph into that mysterious and frequently terrifying world of theory. First, we will explore a way of apporximating the path traced by a spirograph with an **elliptical track.** But in the next chapter, we will not only make this approximation exact, we can generalize our equations to make a spirograph with any track imaginable.
+
+For our first method, instead of starting from scratch, let's break down the equations we got for a circular hypotrochoid from Chapter 1. We can then edit them to describe an elliptical track.
+
+$$
+\begin{align}
+P_x &= (R - r)cos(\alpha) + Dcos(\alpha\frac{R - r}{r}) \\
+P_y &= (R - r)sin(\alpha) - Dsin(\alpha\frac{R - r}{r}) \\
+\end{align}
+$$
+
+Let's rewrite this out so we have three terms:
+
+$$
+\begin{align}
+P_x &= Rcos(\alpha) - rcos(\alpha) + Dcos(\alpha\frac{R - r}{r}) \\
+P_y &= Rsin(\alpha) - rsin(\alpha) - Dsin(\alpha\frac{R - r}{r}) \\
+\end{align}
+$$
+
+The first term of both equations describe the track: a circle with a radius of $R$. The second term gives us an "offset from the track." In other words, the first 2 terms describe where the center of the rotating circle will be. The third term describes the rotation of the point $P$ around the center of the rotating circle.
+
+Now, to start replacing these terms to describe our elliptical track. But to describe this track, we must first ask:
+
+## What Is an Ellipse?
+
+For our purposes, an ellipse is just a squashed circle. Being a squashed circle, it no longer has 1 radius, but needs to be described with the biggest radius and the smallest radius, called the **semimajor** and **semiminor** axes respectively.
+
+<img src="/spirographs/assets/ellipse1.jpg" />
+
+Let the semimajor axis have a length of $A$ and the semiminor have a length of $B$. (these are different from points $A$ and $B$ from Chapter 1, we ran out of sensible letters for our variables). The parametric of an ellipse is
+
+$$
+(Acos(\alpha), Bsin(\alpha))
+$$
+
+Replacing this parametric in for our first term gets us:
+
+$$
+\begin{align}
+P_x &= Acos(\alpha) - rcos(\alpha) + Dcos(\alpha\frac{R - r}{r}) \\
+P_y &= Bsin(\alpha) - rsin(\alpha) - Dsin(\alpha\frac{R - r}{r}) \\
+\end{align}
+$$
+
+## A Saving Approximation
+
+Second problem: we've replaced the $R$s in the first term, but what about for the last term? Before it was the radius of the track, but now there is no consistent radius for the track. What is this $R$ even used for again? Well, remember when we said that the arc from A to C must be equal to the arc from C to B?
+
+<img src="/spirographs/assets/inner4.jpg" />
+
+That idea still holds true since we're still rolling the tracing wheel! Calculating the exact length of that arc for an ellipse gets more complicated, so for now we can introduce an approximation. We might not know the exact arc length of the ellipse, but we can know the perimeter of the ellipse:
+
+$$
+\begin{align}
+p &= 4A\int_{0}^{\frac{\pi}{2}}\sqrt{\left(1-e^{2}\sin^{2}\theta\right)}d\theta \\
+e &= \frac{\sqrt{A^{2}-B^{2}}}{A}
+\end{align}
+$$
+
+Finding the radius of a circle with this perimeter will give us a _good enough_ approximation for $R$.
+
+$$
+R=\frac{p}{2\pi}
+$$
+
+<details>
+    <summary>Perimeter of an ellipse side tangent</summary>
+    What we show above is known as the **elliptic integral**, and it gives off the accurate value for the perimeter. It's
+    derived from finding the length of the parametric curve, which we discuss a little in the next chapter. The elliptic
+    integral is famous because it can't be written in elementary functions, but that hasn't stopped mathematicians from trying!
+</details>
+
+## Finding Our Center
+
+We've done so much math but we haven't had a single Desmos for this chapter. Let's fix that and graph what we have!
+
+<Desmos link="https://www.desmos.com/calculator/tuknjk05ul" />
+
+Hey! That looks pretty good! Wait, what is that?!
+
+<details>
+    <summary>What's what?</summary>
+    Try making the track super squished by making $A$ large and $B$ small. Making $r$ larger too might make it easier to
+    see. Try it with different rotations along the track by changing $T$.
+</details>
+<details>
+    <summary>Answer</summary>
+    <img src="/spirographs/assets/ellipse3.jpg" />
+    The rotating circle is clipping through the track!
+</details>
