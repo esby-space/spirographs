@@ -10,7 +10,7 @@ import Desmos from "../components/desmos.astro";
 
 The first thing you might do when given a spirograph is revolving the little gear inside of the big gear (and trying not to cry when it slips out of place). Playing around, you might notice the variety of curves that can be produced:
 
-It looks like changing the size of the fixed gear, the size of the rolling gear, and the position where the pen is placed changes its shape. So how can we describe this mathematically? The first step is to make some assumptions: we assume that the gears can be modeled as wheels with a specific circumference. The makers of the spirograph likely chose teeth to prevent slipping, but in our mathematical utopia, that is not a problem. Notice now we are describing a hypotrochoid, where the rolling circle is inside of the fixed circle.
+It looks like changing the size of the fixed gear, the size of the rolling gear, and the position where the pen is placed changes its shape. So how can we describe this mathematically? The first step is to make some assumptions: we assume that the gears can be modeled as wheels with a specific circumference. The makers of the spirograph likely chose teeth to prevent slipping, but in our mathematical utopia, that is not a problem. Notice now we are describing a **hypotrochoid**, where the rolling circle is inside of the fixed circle.
 
 ## Setting Up Our Diagram
 
@@ -30,7 +30,7 @@ Right, let's roll the movable circle inside the fixed circle an angle $\alpha$:
 
 <img src="/spirographs/assets/inner2.jpg" />
 
-Notice how all of the points that have been moved now have a subscript of 1. Our goal now is to describe the position of point $P$ given an angle $\alpha$. To do this, we can use parametric equations! If point $F$ is at the origin, all we need to do is find coordinates of point $P$.
+Notice how all of the points that have been moved now have a subscript of 1. Our goal now is to **describe the position of point $P$ given an angle $\alpha$.** To do this, we can use parametric equations! If point $F$ is at the origin, all we need to do is find coordinates of point $P$.
 
 But for this we need some more information! Let's draw a line parallel to $\overline{FA}$ going through point $P$, and drop the heights from point $P$ and $M_1$.
 
@@ -84,7 +84,7 @@ $$
 
 ## Calculating $\beta$
 
-We're getting so close! But what is $\beta$? There's one fact that we have to use: the movable circle is _rolling_ inside the fixed circle. That means that the distance travelled along the fixed circle should equal the distance travelled along the rotating circle.
+We're getting so close! But what is $\beta$? There's one fact that we have to use: the movable circle is _rolling_ inside the fixed circle. That means that the distance travelled along the fixed circle should **equal** the distance travelled along the rotating circle.
 
 <img src="/spirographs/assets/inner4.jpg" />
 

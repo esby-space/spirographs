@@ -4,10 +4,15 @@
     <li><a href="/spirographs/hypotrochoid">Round and Round Again</a></li>
     <li><a href="/spirographs/epitrochoid">Drawing Outside the Lines</a></li>
     <li><a href="/spirographs/ellipse">Around an Elliptical World</a></li>
+    <li><a href="/spirographs/tracks">Spirals of Many Shapes</a></li>
+    <li><a href="/spirographs/credits">Credits and Shoutouts</a></li>
 </nav>
 
+<button id="show" hidden>Show Chapters</button>
+
 <style>
-    nav {
+    nav,
+    button {
         position: fixed;
         bottom: 1rem;
         left: 1rem;
@@ -17,11 +22,15 @@
         background-color: white;
         border-radius: 1rem;
         box-shadow: 0 0 1rem grey;
+
+        font-size: inherit;
+        border: none;
     }
 
     nav h3 {
         text-align: center;
         margin-block: 0.5rem;
+        cursor: pointer;
     }
 
     nav li {
@@ -34,3 +43,19 @@
         color: black;
     }
 </style>
+
+<script lang="js">
+    const nav = document.querySelector("nav");
+    const title = nav.querySelector("h3");
+    const hide = document.querySelector("#show");
+
+    title.onclick = () => {
+        hide.hidden = false;
+        nav.hidden = true;
+    };
+
+    hide.onclick = () => {
+        hide.hidden = true;
+        nav.hidden = false;
+    };
+</script>
