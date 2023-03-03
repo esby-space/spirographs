@@ -2,13 +2,22 @@
 const { link } = Astro.props;
 ---
 
-<iframe class="desmos" src={link}></iframe>
+<div>
+    <iframe class="desmos" src={link}></iframe>
+</div>
 
 <style>
+    div {
+        display: flex;
+        justify-content: center;
+    }
+
     iframe {
+        flex-shrink: 0;
         width: 100%;
         aspect-ratio: 1;
-        border: none;
+        resize: both;
+        border: solid 1px gray;
         margin-block: 1rem;
     }
 </style>
