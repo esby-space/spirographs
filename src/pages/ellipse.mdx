@@ -78,7 +78,8 @@ $$
     <summary>Perimeter of an ellipse side tangent</summary>
     What we show above is known as the **elliptic integral**, and it gives off the accurate value for the perimeter. It's
     derived from finding the length of the parametric curve, which we discuss a little in the next chapter. The elliptic
-    integral is famous because it can't be written in elementary functions, but that hasn't stopped mathematicians from trying!
+    integral is famous because [it can't be written in elementary functions](http://web.tecnico.ulisboa.pt/~mcasquilho/compute/com/,ellips/PerimeterOfEllipse.pdf),
+    [but that hasn't stopped mathematicians from trying](https://www.youtube.com/watch?v=5nW3nJhBHL0)!
 </details>
 
 ## Finding Our Center
@@ -96,6 +97,18 @@ Hey! That looks pretty good! Wait, what is that?!
 </details>
 <details>
     <summary>Answer</summary>
-    <img src="/spirographs/assets/ellipse3.jpg" />
+    <img src="/spirographs/assets/ellipse2.jpg" />
     The rotating circle is clipping through the track!
 </details>
+
+The problem is that we still haven't edited that second term, meaning the center of our rotating wheel isn't correct. Let's look at a diagram from Chapter 1 when we were working with a circular track:
+
+<img src="/spirographs/assets/inner2.jpg" />
+
+Notice how the point of tangency (point $C$) is collinear with the centers of the two wheels (points $F$ and $M_1$). This means that the parametric function $(R - r)(cos(\alpha) + sin(\alpha))$ perfectly describes the position of that center point.
+
+Compare this with a diagram of an elliptical track:
+
+<img src="/spirographs/assets/ellipse3.jpg" />
+
+The point of tangency and the two centers are no longer collinear, so the equation $(Acos(\alpha), Bsin(\alpha)) - r(cos(\alpha), sin(\alpha))$ no longer describes the center of the rotating circle. We'll need something more sophisticated.

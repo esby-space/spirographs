@@ -8,12 +8,12 @@ const { link } = Astro.props;
 
 <style>
     div {
-        display: flex;
-        justify-content: center;
+        display: grid;
+        place-content: center;
+        grid-template-columns: 1fr;
     }
 
     iframe {
-        flex-shrink: 0;
         width: 100%;
         aspect-ratio: 1;
         resize: both;
