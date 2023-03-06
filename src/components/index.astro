@@ -5,7 +5,7 @@ import Nav from "./nav.astro";
 
 <Layout>
     <header>
-        <img src="/spirographs/assets/intro.mp4" />
+        <video autoplay loop muted src="/spirographs/assets/intro.mp4"></video>
         <div>
             <h1>The Entrancing World of The Spirograph</h1>
             <h2>By Nancy Chen and Sebastian Branch</h2>
@@ -29,13 +29,13 @@ import Nav from "./nav.astro";
         background-color: black;
     }
 
-    header img,
+    header video,
     header div {
         grid-row: 1;
         grid-column: 1;
     }
 
-    header img {
+    header video {
         height: 100vh;
         object-fit: cover;
     }
