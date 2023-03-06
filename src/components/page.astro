@@ -37,4 +37,28 @@ import Nav from "./nav.astro";
         font-weight: bold;
         border-radius: 1rem;
     }
+
+    /* section numbering */
+
+    main {
+        conter-reset: h2Counter;
+    }
+
+    h1 {
+        counter-reset: h2Counter;
+    }
+
+    h2 {
+        counter-reset: h3Counter;
+    }
+
+    h2::before {
+        content: counter(h2Counter) ". ";
+        counter-increment: h2Counter;
+    }
+
+    h3::before {
+        content: counter(h2Counter) "." counter(h3Counter) ". ";
+        counter-increment: h3Counter;
+    }
 </style>

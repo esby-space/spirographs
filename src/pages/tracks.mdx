@@ -6,4 +6,66 @@ layout: ../components/page.astro
 
 ## Spirals of Many Shapes
 
-We must admit to you reader that nearly everything beyond this point is our humble attempt to explain [this masterpiece of a Stack Exchange post](https://math.stackexchange.com/a/32923).
+We must admit to you reader that nearly everything beyond this point is our humble attempt to explain [this masterpiece of a Stack Exchange post](https://math.stackexchange.com/a/32923). We've played around with circular and elliptical tracks, but what about star shaped tracks? Flower shaped tracks?? 3D tracks??? Let's try and generalize our equations to work with any track! Throughout our journey, we'll be applying what we find for an elliptical track as an example.
+
+For this chapter, we're going to be using a lot of the lessons from previous chapters, like parametrics, arc length, and offset. By the end of this though, you will be a spirograph and trochoid master!
+
+## Defining our track
+
+In Chapter 3, we rewrote our hypotrochoid equation so that we could define the ellipse as a parametric equation. Using that idea, this chapter will also define our track as a parametric equation, but will keep it general so we can use any track!
+
+$$
+\begin{align}
+P_x = X(t) \\
+P_y = Y(t)
+\end{align}
+$$
+
+To review, for an ellipse:
+
+$$
+\begin{align}
+X(t) &= Acos(t) \\
+Y(t) &= Bsin(t)
+\end{align}
+$$
+
+## Rotation of the Tracing Wheel
+
+### Finding the Arc Length of the Track
+
+In Chapter 1, we saw that the rotation of the tracing wheel is determined by the distance travelled along the track:
+
+<img src="/spirographs/assets/inner4.jpg" />
+
+So in this diagram of a hypotrochoid, $|\overset{\huge\frown}{AC_1}| = |\overset{\huge\frown}{B_1C_1}|$. For a circlar track, finding $|\overset{\huge\frown}{AC_1}|$ was easy. In Chapter 2, we had to make an approximation to find this length. But there is a way of finding this length for any parametric:
+
+$$
+s(t) = \int_0^t \sqrt{X'(u)^2 + Y'(u)^2} du
+$$
+
+<details>
+    <summary>Where does this equation come from?</summary>
+    From calculus' greatest friend: approximation with refinement. We can approximate a parametric curve as a bunch of tiny
+    little lines: [diagram time]
+</details>
+
+Applying this equation for an ellipse, we can find that the arc length for a given $t$ is:
+
+$$
+\begin{align}
+s(t) &= \int_0^t \sqrt{X'(u)^2 + Y'(u)^2} du \\
+    &= \int_0^t \sqrt{\frac{d}{dx} Acos^2(u) + \frac{d}{dx} Bsin^2(u)} du \\
+    &= \int_0^t \sqrt{A^2sin^2(u) + B^2cos^2(u)} du\\
+\end{align}
+$$
+
+### Representing our Tracing Wheel as Parametrics
+
+I know, I know, it's parametrics all around, but we need a way of turning this distance into some rotation.
+
+## Position of the Tracing Wheel
+
+## Piecing it together
+
+## Playing Around
