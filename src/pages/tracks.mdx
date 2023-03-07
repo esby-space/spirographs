@@ -62,7 +62,21 @@ $$
 
 ### Representing our Tracing Wheel as Parametrics
 
-I know, I know, it's parametrics all around, but we need a way of turning this distance into some rotation.
+I know, I know, it's parametrics all around, but we need a way of turning this distance into some rotation. Since we're already in parametric land, it makes sense to also define our tracing wheel as a parametric.
+
+$$
+(rcos(u), rsin(u))
+$$
+
+Here, $u$ is a value representing how much we've rotated the wheel.
+
+It'd be nice if we could define our parametric so bottom-most point on the circle is at the origin. This way, we don't have to worry about offsetting the wheel later like we did in Chpater 3. All we need to do is bump it up by $r$.
+
+$$
+(rcos(u), r + rsin(u))
+$$
+
+But if we we're tracing our spirograph counter-clockwise, then the tracing wheel will spin clockwise (remember it's rolling!)
 
 ## Position of the Tracing Wheel
 
