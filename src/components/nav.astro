@@ -5,6 +5,7 @@
     <li><a href="/spirographs/epitrochoid">Drawing Outside the Lines</a></li>
     <li><a href="/spirographs/ellipse">Around an Elliptical World</a></li>
     <li><a href="/spirographs/tracks">Spirals of Many Shapes</a></li>
+    <li><a href="/spirographs/observations">Observations to Keep Us Spinning</a></li>
     <li><a href="/spirographs/credits">Credits and Shoutouts</a></li>
 </nav>
 
@@ -21,7 +22,7 @@
         height: max-content;
         background-color: white;
         border-radius: 1rem;
-        box-shadow: 0 0 1rem grey;
+        box-shadow: 0 0 0.5rem grey;
 
         font-size: inherit;
         border: none;
@@ -46,8 +47,10 @@
         color: black;
     }
 
-    button {
+    button:hover {
         cursor: pointer;
+        box-shadow: 0 0 1rem grey;
+        transition: all 0.2s;
     }
 </style>
 
@@ -56,11 +59,7 @@
     const title = nav.querySelector("h3");
     const hide = document.querySelector("#show");
 
-    const toggle = () => {
-        hide.hidden = !hide.hidden;
-        nav.hidden = !nav.hidden;
-    };
-
+    const toggle = () => ([hide.hidden, nav.hidden] = [!hide.hidden, !nav.hidden]);
     title.onclick = toggle;
     hide.onclick = toggle;
 </script>

@@ -12,7 +12,6 @@
 	"dependencies": {
 		"@astrojs/mdx": "^0.17.0",
 		"astro": "^2.0.13",
-		"rehype-katex": "^6.0.2",
 		"rehype-mathjax": "^4.0.2",
 		"remark-math": "^5.1.1"
 	}

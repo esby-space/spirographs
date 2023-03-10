@@ -29,13 +29,33 @@ import Nav from "./nav.astro";
         display: block;
     }
 
-    details summary {
-        padding: 1rem;
+    /* hint thingies */
+    details {
         margin-block: 1rem;
-        background-color: pink;
-        cursor: pointer;
-        font-weight: bold;
+        padding: 1rem 1rem 0;
+        border: 1px solid pink;
         border-radius: 1rem;
+    }
+
+    summary {
+        margin: -1rem -1rem 0;
+        padding: 1rem;
+        border-radius: 1rem;
+        cursor: pointer;
+        background-color: pink;
+        font-weight: bold;
+    }
+
+    details[open] {
+        padding: 1rem;
+    }
+
+    details[open] summary {
+        border-bottom: 1px solid pink;
+    }
+
+    details p {
+        height: 0;
     }
 
     /* section numbering */
@@ -47,13 +67,13 @@ import Nav from "./nav.astro";
         counter-reset: h2Counter;
     }
 
-    main h2 {
-        counter-reset: h3Counter;
-    }
-
     main h2::before {
         content: counter(h2Counter) ". ";
         counter-increment: h2Counter;
+    }
+
+    main h2 {
+        counter-reset: h3Counter;
     }
 
     main h3::before {
