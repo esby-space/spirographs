@@ -8,7 +8,7 @@ import Desmos from "../components/desmos.astro";
 
 ## Spirals of Many Shapes
 
-We must admit to you reader that nearly everything beyond this point is our humble attempt to explain [this masterpiece of a Stack Exchange post](https://math.stackexchange.com/a/32923). We've played around with circular and elliptical tracks, but what about star shaped tracks? Flower shaped tracks?? 3D tracks??? Let's try and generalize our equations to work with any track! Throughout our journey, we'll be applying what we find for an elliptical track as an example.
+We must admit to you reader that nearly everything beyond this point is our humble attempt to explain [this masterpiece of a Stack Exchange post](https://math.stackexchange.com/a/32923). We've played around with circular and elliptical tracks, but what about star shaped tracks? Flower shaped tracks?? 3D tracks??? Let's try and **generalize our equations to work with any track!** Throughout our journey, we'll be applying what we find for an elliptical track as an example.
 
 For this chapter, we're going to be using a lot of the lessons from previous chapters, like parametrics, arc length, and offset. By the end of this though, you will be a spirograph and trochoid master!
 
@@ -210,16 +210,64 @@ Doing this gets us:
 
 Next, let's rotate our circle so that the parametric equation where our circle begins $(u=0)$ matches up with where it is tracing the ellipse!
 
-To do so, we need to rotate by some tangential angle $\phi$ Notice how $tan(\phi)$ is going to be equal to the slope of the tangent line at the point $(X(t), Y(t))$!
+To do so, we need to rotate by some tangential angle $\phi$. Notice how $tan(\phi)$ is going to be equal to the slope of the tangent line at the point $(X(t), Y(t))$!
 
 $$
 \begin{align}
 tan(\phi) &= \frac{dy}{dx} \\
     &= \frac{dy}{dt} / \frac{dx}{dt} \\
-    &= \frac{Y'(t)}{X'(t)}
+    &= \frac{Y'(t)}{X'(t)} \\
+\phi &= tan^{-1}(\frac{Y'(t)}{X'(t)})
 \end{align}
 $$
 
 <img src="/spirographs/assets/tracks3.jpg" />
+
+To actually rotate it, we can plug this into the anticlockwise rotation matrix. We want to turn it anticlockwise because the wheel already turns in the anticlockwise direction, so yeah mhm.
+
+$$
+\begin{align}
+\begin{pmatrix}
+cos(\phi) & -sin(\phi) \\
+sin(\phi) & cos(\phi)
+\end{pmatrix}
+&=
+\begin{pmatrix}
+cos(tan^{-1}(\frac{Y'(t)}{X'(t)})) & -sin(tan^{-1}(\frac{Y'(t)}{X'(t)})) \\
+sin(tan^{-1}(\frac{Y'(t)}{X'(t)})) & cos(tan^{-1}(\frac{Y'(t)}{X'(t)}))
+\end{pmatrix} \\
+&=
+\begin{pmatrix}
+\frac{X'(t)}{\sqrt{X'(t)^2 + Y'(t) ^ 2}} & -\frac{Y'(t)}{\sqrt{X'(t)^2 + Y'(t) ^ 2}} \\
+\frac{Y'(t)}{\sqrt{X'(t)^2 + Y'(t) ^ 2}} & \frac{X'(t)}{\sqrt{X'(t)^2 + Y'(t) ^ 2}}
+\end{pmatrix} \\
+&=
+\frac{1}{\sqrt{X'(t)^2 + Y'(t) ^ 2}}
+\begin{pmatrix}
+X'(t) & -Y'(t) \\
+Y'(t) & X'(t)
+\end{pmatrix}
+\end{align}
+$$
+
+Since we're in the land of linear algebra, all we need to do to apply this rotation is to multiply it by the parametric of our tracing circle! (It's important we do this before our translation though!)
+
+$$
+\begin{pmatrix}
+X(t) \\ Y(t)
+\end{pmatrix}
++
+\frac{1}{\sqrt{X'(t)^2 + Y'(t) ^ 2}}
+\begin{pmatrix}
+X'(t) & -Y'(t) \\
+Y'(t) & X'(t)
+\end{pmatrix}
+\begin{pmatrix}
+-drsin(\frac{s(t)}{r}) \\
+r-drsin(\frac{s(t)}{r}
+\end{pmatrix}
+$$
+
+**And there we go! That is our final equation!!**
 
 ## Playing Around
