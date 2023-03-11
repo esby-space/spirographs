@@ -1,6 +1,7 @@
 ---
 import Layout from "../components/layout.astro";
 import Nav from "./nav.astro";
+import Footer from "./footer.astro";
 ---
 
 <Layout>
@@ -14,6 +15,7 @@ import Nav from "./nav.astro";
 
     <main>
         <slot />
+        <Footer chapter="0" />
     </main>
 
     <Nav />

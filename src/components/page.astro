@@ -1,11 +1,16 @@
 ---
 import Layout from "./layout.astro";
 import Nav from "./nav.astro";
+import Footer from "./footer.astro";
+
+const page = Astro.props.frontmatter;
+console.log(page);
 ---
 
-<Layout>
+<Layout title={page.title}>
     <main>
         <slot />
+        <Footer chapter={page.chapter} />
     </main>
     <Nav />
 </Layout>
@@ -59,10 +64,6 @@ import Nav from "./nav.astro";
     }
 
     /* section numbering */
-    main {
-        conter-reset: h2Counter;
-    }
-
     main h1 {
         counter-reset: h2Counter;
     }

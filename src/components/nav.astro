@@ -1,12 +1,18 @@
-<nav hidden>
+---
+const pages = await Astro.glob("../pages/*.mdx");
+---
+
+<nav id="main" hidden>
     <h3>Chapters</h3>
-    <li><a href="/spirographs/">Introduction</a></li>
-    <li><a href="/spirographs/hypotrochoid">Round and Round Again</a></li>
-    <li><a href="/spirographs/epitrochoid">Drawing Outside the Lines</a></li>
-    <li><a href="/spirographs/ellipse">Around an Elliptical World</a></li>
-    <li><a href="/spirographs/tracks">Spirals of Many Shapes</a></li>
-    <li><a href="/spirographs/observations">Observations to Keep Us Spinning</a></li>
-    <li><a href="/spirographs/credits">Credits and Shoutouts</a></li>
+    {
+        pages
+            .sort((a, b) => a.frontmatter.chapter - b.frontmatter.chapter)
+            .map((page) => (
+                <li>
+                    <a href={page.url + "/"}>{page.frontmatter.title}</a>
+                </li>
+            ))
+    }
 </nav>
 
 <button id="show"><strong>Chapters</strong></button>
@@ -54,10 +60,10 @@
     }
 </style>
 
-<script lang="js">
-    const nav = document.querySelector("nav");
-    const title = nav.querySelector("h3");
-    const hide = document.querySelector("#show");
+<script>
+    const nav = document.querySelector("nav#main") as HTMLElement;
+    const title = nav.querySelector("h3") as HTMLElement;
+    const hide = document.querySelector("#show") as HTMLButtonElement;
 
     const toggle = () => ([hide.hidden, nav.hidden] = [!hide.hidden, !nav.hidden]);
     title.onclick = toggle;
