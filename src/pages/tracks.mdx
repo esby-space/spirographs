@@ -2,6 +2,8 @@
 layout: ../components/page.astro
 ---
 
+import Desmos from "../components/desmos.astro";
+
 # Chapter 4
 
 ## Spirals of Many Shapes
@@ -34,7 +36,7 @@ $$
 
 ### Finding the Arc Length of the Track
 
-In Chapter 1, we saw that the rotation of the tracing wheel is determined by the distance travelled along the track:
+In Chapter 1, we saw that the **rotation of the tracing wheel is determined by the distance travelled along the track:**
 
 <img src="/spirographs/assets/inner4.jpg" />
 
@@ -62,24 +64,162 @@ $$
 
 ### Representing our Tracing Wheel as Parametrics
 
-I know, I know, it's parametrics all around, but we need a way of turning this distance into some rotation. Since we're already in parametric land, it makes sense to also define our tracing wheel as a parametric.
+I know, I know, it's parametrics all around, but we need a **way of turning this distance into some rotation.** Since we're already in parametric land, it makes sense to also define our tracing wheel as a parametric.
 
 $$
-(rcos(u), rsin(u))
+\begin{pmatrix}
+rcos(u) \\
+rsin(u)
+\end{pmatrix}
 $$
+
+<details>
+    <summary>What is this notation?</summary>
+    Dealing with rotations and other transformations can get complicated (and we'll be doing a lot of that in the next section).
+    Since this only has one column, it's exactly the same $(rcos(u), rsin(u))$. But buckle up, we're heading to the land
+    of linear algebra!
+</details>
 
 Here, $u$ is a value representing how much we've rotated the wheel.
 
-It'd be nice if we could define our parametric so bottom-most point on the circle is at the origin. This way, we don't have to worry about offsetting the wheel later like we did in Chpater 3. All we need to do is bump it up by $r$.
+But if we're tracing our spirograph counter-clockwise, then the tracing wheel will spin clockwise (remember it's rolling!). So, let's change the direction of our parametric equation by making $u$ negative!
 
 $$
-(rcos(u), r + rsin(u))
+\begin{pmatrix}
+rcos(-u) \\
+rsin(-u)
+\end{pmatrix} =
+\begin{pmatrix}
+rcos(u) \\
+-rsin(u)
+\end{pmatrix}
 $$
 
-But if we're tracing our spirograph counter-clockwise, then the tracing wheel will spin clockwise (remember it's rolling!)
+It'd be nice if we could define our parametric so bottom-most point on the circle is at the origin. This way, we don't have to worry about offsetting the wheel later like we did in Chpater 3.
+
+$$
+\begin{pmatrix}
+rcos(u) \\
+r - rsin(u)
+\end{pmatrix}
+$$
+
+Let's see what we got so far!
+
+<Desmos link="https://www.desmos.com/calculator/mly3ied8wv" />
+
+Let's also redefine where we are at time u=0 to the origin! This way, it'll be easy to attatch this to the point of tangency. To do so, we find the angle (let's call it $c$) that we must offset our u by:
+
+$$
+\begin{align}
+\begin{pmatrix}
+0\\0
+\end{pmatrix}
+&=
+\begin{pmatrix}
+rcos(c) \\
+r - rsin(c)
+\end{pmatrix} \\
+c &= \frac{\pi}{2}
+\end{align}
+$$
+
+Now, let's modify our equation now with this angle!
+
+$$
+\begin{align}
+&\begin{pmatrix}
+rcos(u + \frac{\pi}{2}) \\
+r - rsin(u + \frac{\pi}{2})
+\end{pmatrix} \\
+&=
+\begin{pmatrix}
+-rsin(u) \\
+r - rcos(u)
+\end{pmatrix}
+\end{align}
+$$
+
+We haven't yet accounted for the position of the pen point. Replacing $r$ with $rd$, where $d$ is a ratio representing the position of our tracing point like in previous chapters.
+
+$$
+\begin{pmatrix}
+-drsin(u) \\
+r - drsin(u)
+\end{pmatrix}
+$$
+
+Let's see what this like!
+
+<Desmos link="https://www.desmos.com/calculator/gladjiwp7a" />
+
+### Find that Rotation!
+
+Now, let's roll the circle!
+
+Remember, rolling without slipping requires that the distance travelled around the track equals the amount of the wheel rolled. The arclength of our circle parametric is $ru$, so then we have:
+
+$$
+\begin{align}
+ru &= s(t) \\
+u &= \frac{s(t)}{u}
+\end{align}
+$$
+
+Substituting this in, we get the final term representing the rotation of the tracing circle!
+
+$$
+\begin{pmatrix}
+-drsin(\frac{s(t)}{r}) \\
+r-drsin(\frac{s(t)}{r}
+\end{pmatrix}
+$$
 
 ## Position of the Tracing Wheel
 
-## Piecing it together
+But we're not done yet! This is what we have right now:
+
+<img src="/spirographs/assets/tracks1.jpg" />
+
+(Where those two black arrows are the same length).
+
+We have to account for the position of our wheel and make sure that the point where the parametric equation for the inside wheel begins (it's at the origin right now) aligns to the point where the equation for our track begins!
+
+For this, we need to do two more things: **translate our tracing circle** so that it touches the ellipse, and then **rotate our tracing wheel** so that it rolls properly.
+
+### Translating our Circle
+
+To start, let's move our tracing circle to the point on the track. As we saw in Chapter 3, we can just add the parametric of the track to our equation:
+
+$$
+\begin{pmatrix}
+X(t) \\ Y(t)
+\end{pmatrix}
++
+\begin{pmatrix}
+-drsin(\frac{s(t)}{r}) \\
+r-drsin(\frac{s(t)}{r}
+\end{pmatrix}
+$$
+
+Doing this gets us:
+
+<img src="/spirographs/assets/tracks2.jpg" />
+
+### Rotating Our Circle
+
+Next, let's rotate our circle so that the parametric equation where our circle begins $(u=0)$ matches up with where it is tracing the ellipse!
+
+To do so, we need to rotate by some tangential angle $\phi$ Notice how $tan(\phi)$ is going to be equal to the slope of the tangent line at the point $(X(t), Y(t))$!
+
+$$
+\begin{align}
+tan(\phi) &= \frac{dy}{dx} \\
+    &= \frac{dy}{dt} / \frac{dx}{dt} \\
+    &= \frac{Y'(t)}{X'(t)}
+\end{align}
+$$
+
+<img src="/spirographs/assets/tracks3.jpg" />
 
 ## Playing Around

@@ -81,26 +81,3 @@ import Nav from "./nav.astro";
         counter-increment: h3Counter;
     }
 </style>
-
-<script lang="js">
-    const images = document.querySelectorAll("img");
-
-    const toggle = (image) => {
-        const height = image.height;
-        const width = image.width;
-        const scale = 2;
-
-        let factor = scale;
-        if (image.classList.contains("clicked")) {
-            factor = 1 / scale;
-            image.classList.remove("clicked");
-        } else {
-            image.classList.add("clicked");
-        }
-
-        image.height = `${height * factor}`;
-        image.width = `${width * factor}`;
-    };
-
-    images.forEach((image) => (image.onclick = () => toggle(image)));
-</script>
