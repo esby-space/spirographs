@@ -261,6 +261,7 @@ It looks pretty good!
 Since we're in the land of linear algebra, all we need to do to apply this rotation is to multiply it by the parametric of our tracing circle! (It's important we do this before our translation though!)
 
 $$
+\begin{gather}
 \begin{pmatrix}
 X(t) \\ Y(t)
 \end{pmatrix}
@@ -273,9 +274,17 @@ Y'(t) & X'(t)
 \begin{pmatrix}
 -drsin(\frac{s(t)}{r}) \\
 r-drsin(\frac{s(t)}{r}
-\end{pmatrix}
+\end{pmatrix} \\
+s(t) = \int_0^t \sqrt{X'(u)^2 + Y'(u)^2} du
+\end{gather}
 $$
 
-**And there we go! That's our final equation!!**
+And there we go! That's our final equation!!
 
 ## Playing Around
+
+**_Ding, Dong, it's Desmos Song!_**
+
+<Desmos link="https://www.desmos.com/calculator/uyib54f0gc" />
+
+(As you can see, the major down-side here is that it's not the easiest on the old silicon)

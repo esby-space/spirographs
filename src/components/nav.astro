@@ -37,7 +37,6 @@ const pages = await Astro.glob("../pages/*.mdx");
     nav h3 {
         text-align: center;
         margin-block: 0.5rem;
-        cursor: pointer;
     }
 
     nav li {
@@ -62,10 +61,12 @@ const pages = await Astro.glob("../pages/*.mdx");
 
 <script>
     const nav = document.querySelector("nav#main") as HTMLElement;
-    const title = nav.querySelector("h3") as HTMLElement;
     const hide = document.querySelector("#show") as HTMLButtonElement;
 
     const toggle = () => ([hide.hidden, nav.hidden] = [!hide.hidden, !nav.hidden]);
-    title.onclick = toggle;
     hide.onclick = toggle;
+
+    document.body.addEventListener("click", (event) => {
+        if (!nav.hidden && !hide.contains(event.target as Node) && !nav.contains(event.target as Node)) toggle();
+    });
 </script>

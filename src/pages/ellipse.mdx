@@ -43,15 +43,22 @@ For our purposes, an ellipse is just a squashed circle. Being a squashed circle,
 Let the semimajor axis have a length of $A$ and the semiminor have a length of $B$. (these are different from points $A$ and $B$ from Chapter 1, we ran out of sensible letters for our variables). The parametric of an ellipse is
 
 $$
-(Acos(\alpha), Bsin(\alpha))
+(Acos(t), Bsin(t))
 $$
+
+<details>
+    <summary>Wait, why a $t$?</summary>
+    Notice how we're making the distinction between $\alpha$ and $t$? Before, we were using $\alpha$ as our input to our
+    parametric equations. But now that we're also defining our track as a parametric equation, we need to decouple "time"
+    from "angle". This doesn't change anything with the equations, but we changed it here to cause less confusion.
+</details>
 
 Replacing this parametric in for our first term gets us:
 
 $$
 \begin{align}
-P_x &= Acos(\alpha) - rcos(\alpha) + Dcos(\alpha\frac{R - r}{r}) \\
-P_y &= Bsin(\alpha) - rsin(\alpha) - Dsin(\alpha\frac{R - r}{r}) \\
+P_x &= Acos(t) - rcos(t) + Dcos(t\frac{R - r}{r}) \\
+P_y &= Bsin(t) - rsin(t) - Dsin(t\frac{R - r}{r}) \\
 \end{align}
 $$
 
@@ -65,7 +72,7 @@ That idea still holds true since we're still rolling the tracing wheel! Calculat
 
 $$
 \begin{align}
-p &= 4A\int_{0}^{\frac{\pi}{2}}\sqrt{\left(1-e^{2}\sin^{2}\theta\right)}d\theta \\
+p &= 4A\int_{0}^{\frac{\pi}{2}}\sqrt{(1-e^{2}\sin^{2}\theta)}d\theta \\
 e &= \frac{\sqrt{A^{2}-B^{2}}}{A}
 \end{align}
 $$
@@ -113,10 +120,53 @@ Compare this with a diagram of an elliptical track:
 
 <img src="/spirographs/assets/ellipse3.jpg" />
 
-The point of tangency and the two centers are no longer collinear, so the equation $(Acos(\alpha), Bsin(\alpha)) - r(cos(\alpha), sin(\alpha))$ no longer describes the center of the rotating circle. We'll need something more sophisticated. To find the offset of $M_1$ from $E$, let's find length and slope of $\overline{M_1E}$.
+The point of tangency and the two centers are no longer collinear, so the equation $(Acos(\alpha), Bsin(\alpha)) - r(cos(\alpha), sin(\alpha))$ no longer describes the center of the rotating circle. We'll need something more sophisticated. To find the offset of $M_1$ from $C_1$, let's find the slope of $\overline{CM_1}$.
 
-To find the slope, remember that point $E$ has a position of $(Acos(\alpha), Bsin(\alpha))$, and since both $F$ is at the origin and $M_1$ is on the segment $FM$, then:
+To find this slope, notice how that it's perpendicular to the line tangent with the ellipse at point $C_1$. And finding the slope of the tangent line is nothing a little calculus (and our favorite trig identities) can't handle!
+
+<img src="/spirographs/assets/ellipse4.jpg" />
 
 $$
-tan(\alpha) = \frac{Bsin(\alpha)}{Acos(\alpha)}
+\begin{align}
+tan(\theta + \frac{\pi}{2}) &= \frac{dy}{dx} \\
+\frac{sin(\theta + \frac{\pi}{2})}{cos(\theta + \frac{\pi}{2})} &= \frac{dy}{dt} / \frac{dx}{dt} \\
+\frac{cos(\theta)}{-sin(\theta)} &= \frac{d}{dt} Bsin(t) / \frac{d}{dt} Acos(t) \\
+\frac{cos(\theta)}{-sin(\theta)} &= \frac{Bcos(t)}{-Asin(t)} \\
+\frac{sin(\theta)}{cos(\theta)} &= \frac{Asin(t)}{Bcos(t)} \\
+tan(\theta) &= \frac{A}{B}tan(t) \\
+\theta &= tan^{-1}(\frac{A}{B}tan(t))
+\end{align}
 $$
+
+All we need to find now is the lengths of segments $M_1U$ and $C_1U$. I hope you're not trigged out:
+
+$$
+\begin{align}
+M_1U &= rcos(\theta) \\
+    &= rcos(tan^{-1}(\frac{A}{B}tan(t))) \\
+    &=  \frac{Brcos(t)}{\sqrt{A^2sin^2(t)+B^2cos^2(t)}} \\
+C_1U &= rsin(\theta) \\
+    &= rsin(tan^{-1}(\frac{A}{B}tan(t))) \\
+    &=  \frac{Arsin(t)}{\sqrt{A^2sin^2(t)+B^2cos^2(t)}} \\
+\end{align}
+$$
+
+Awesome! All that's left to do is to replace our offset terms with these and we're good to roll!
+
+$$
+\begin{gather}
+P_x = Acos(t) - \frac{Brcos(t)}{\sqrt{A^2sin^2(t)+B^2cos^2(t)}} \ + Dcos(t\frac{R - r}{r}) \\
+P_y = Bsin(t) - \frac{Arsin(t)}{\sqrt{A^2sin^2(t)+B^2cos^2(t)}} \ - Dsin(t\frac{R - r}{r}) \\
+R = \frac{4A\int_{0}^{\frac{\pi}{2}}\sqrt{(1-\frac{A^2 - B^2}{A^2}\sin^2\theta)}d\theta}{2\pi}
+\end{gather}
+$$
+
+(don't those equations just look lovely)
+
+## Playing Around
+
+What's that, is it **Desmos-time?**
+
+<Desmos link="https://www.desmos.com/calculator/vtje7yug3t" />
+
+Notice how the wheel kinda slips when it meets the pointer parts of the ellipse. This is because of that approximation we did earlier, but is something we can fix in the next chapter!
