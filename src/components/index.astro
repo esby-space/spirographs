@@ -6,7 +6,7 @@ import Footer from "./footer.astro";
 
 <Layout>
     <header>
-        <video autoplay loop muted src="/spirographs/assets/intro.mp4"></video>
+        <video autoplay loop muted controls src="/spirographs/assets/intro.mp4"></video>
         <div>
             <h1>The Entrancing World of The Spirograph</h1>
             <h2>By Nancy Chen and Sebastian Branch</h2>
@@ -24,7 +24,7 @@ import Footer from "./footer.astro";
 <style>
     header {
         width: 100vw;
-        height: 100vh;
+        height: 90vh;
         display: grid;
         place-items: center;
         color: white;
@@ -38,19 +38,12 @@ import Footer from "./footer.astro";
     }
 
     header video {
-        height: 100vh;
+        height: 90vh;
         object-fit: cover;
     }
 
     header div {
         z-index: 2;
         text-align: center;
-    }
-
-    main {
-        margin-inline: auto;
-        padding-bottom: 4rem;
-        width: calc(100% - 8rem);
-        max-width: 800px;
     }
 </style>

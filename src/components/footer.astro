@@ -38,9 +38,28 @@ const { chapter = null } = Astro.props;
 
     nav a,
     nav span {
-        color: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 3rem;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background-color: lightcoral;
+        color: white;
         text-decoration: none;
         cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    [data-current] {
+        font-weight: bold;
+        cursor: default;
+        background-color: tomato;
+    }
+
+    nav a:hover,
+    nav span:hover {
+        background-color: tomato;
     }
 
     p {
@@ -57,8 +76,7 @@ const { chapter = null } = Astro.props;
     if (nav.dataset.chapter) {
         const chapter = parseInt(nav.dataset.chapter);
         const element = nav.children.item(chapter + 1) as HTMLElement;
-        element.style.fontWeight = "bold";
-        element.style.cursor = "default";
+        element.dataset.current = "true";
 
         previous.onclick = () => (nav.children.item(chapter) as HTMLElement).click();
         next.onclick = () => (nav.children.item(chapter + 2) as HTMLElement).click();

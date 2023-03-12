@@ -44,7 +44,7 @@ const pages = await Astro.glob("../pages/*.mdx");
     }
 
     nav li:hover {
-        color: deeppink;
+        color: tomato;
     }
 
     nav a {
@@ -64,8 +64,10 @@ const pages = await Astro.glob("../pages/*.mdx");
     const hide = document.querySelector("#show") as HTMLButtonElement;
 
     const toggle = () => ([hide.hidden, nav.hidden] = [!hide.hidden, !nav.hidden]);
-    hide.onclick = toggle;
+    hide.onmouseenter = toggle;
+    nav.onmouseleave = toggle;
 
+    hide.onclick = toggle;
     document.body.addEventListener("click", (event) => {
         if (!nav.hidden && !hide.contains(event.target as Node) && !nav.contains(event.target as Node)) toggle();
     });

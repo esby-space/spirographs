@@ -15,14 +15,6 @@ const page = Astro.props.frontmatter;
 </Layout>
 
 <style is:global>
-    main {
-        margin-inline: auto;
-        margin-block: 4rem;
-        width: calc(100% - 8rem);
-        max-width: 800px;
-        position: relative;
-    }
-
     .math-display {
         display: grid;
         place-content: center;
@@ -37,7 +29,7 @@ const page = Astro.props.frontmatter;
     details {
         margin-block: 1rem;
         padding: 1rem 1rem 0;
-        border: 1px solid pink;
+        outline: 1px solid pink;
         border-radius: 1rem;
     }
 
@@ -79,5 +71,13 @@ const page = Astro.props.frontmatter;
     main h3::before {
         content: counter(h2Counter) "." counter(h3Counter) ". ";
         counter-increment: h3Counter;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        align-items: center;
+        justify-items: center;
     }
 </style>
