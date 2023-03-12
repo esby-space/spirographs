@@ -6,7 +6,7 @@ import Footer from "./footer.astro";
 
 <Layout>
     <header>
-        <video autoplay loop muted controls src="/spirographs/assets/intro.mp4"></video>
+        <video autoplay muted src="/spirographs/assets/intro.mp4"></video>
         <div>
             <h1>The Entrancing World of The Spirograph</h1>
             <h2>By Nancy Chen and Sebastian Branch</h2>
@@ -47,3 +47,8 @@ import Footer from "./footer.astro";
         text-align: center;
     }
 </style>
+
+<script>
+    // const video = document.querySelector("video") as HTMLVideoElement;
+    // video.onended = () => video.pause();
+</script>
