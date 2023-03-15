@@ -1,5 +1,5 @@
 ---
-const { title = "Spirographs" } = Astro.props;
+const { title = "The World of the Spirograph!" } = Astro.props;
 ---
 
 <html lang="en">
@@ -10,6 +10,9 @@ const { title = "Spirographs" } = Astro.props;
         <meta name="generator" content={Astro.generator} />
 
         <title>{title}</title>
+        <meta name="description" content="An interactive look into the math of spirographs and other spirals!" />
+        <meta name="keywords" content="spirographs, math, spirals, trochoids, epitrochoids" />
+        <meta name="author" content="Nancy Chen and Sebastian Branch" />
     </head>
 
     <body>
@@ -38,7 +41,7 @@ const { title = "Spirographs" } = Astro.props;
                 line-height: 2.2rem;
             }
 
-            main {
+            article {
                 margin-inline: auto;
                 padding-bottom: 4rem;
                 width: calc(100% - 8rem);

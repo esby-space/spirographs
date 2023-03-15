@@ -7,10 +7,10 @@ const page = Astro.props.frontmatter;
 ---
 
 <Layout title={page.title}>
-    <main>
+    <article>
         <slot />
         <Footer chapter={page.chapter} />
-    </main>
+    </article>
     <Nav />
 </Layout>
 
@@ -55,11 +55,11 @@ const page = Astro.props.frontmatter;
     }
 
     /* section numbering */
-    main h1 {
+    article h1 {
         counter-reset: h2Counter;
     }
 
-    main h2::before {
+    article h2::before {
         content: counter(h2Counter) ". ";
         counter-increment: h2Counter;
     }

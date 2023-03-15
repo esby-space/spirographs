@@ -38,7 +38,7 @@ Now, to start replacing these terms to describe our elliptical track. But to des
 
 For our purposes, an ellipse is just a squashed circle. Being a squashed circle, it no longer has 1 radius, but needs to be described with the biggest radius and the smallest radius, called the **semimajor** and **semiminor** axes respectively.
 
-<img src="/spirographs/assets/ellipse1.jpg" />
+<img src="/spirographs/assets/ellipse1.jpg" alt="graph of an ellipse showing the semimajor and semiminor axis" />
 
 Let the semimajor axis have a length of $A$ and the semiminor have a length of $B$. (these are different from points $A$ and $B$ from Chapter 1, we ran out of sensible letters for our variables). The parametric of an ellipse is
 
@@ -66,7 +66,10 @@ $$
 
 Second problem: we've replaced the $R$s in the first term, but what about for the last term? Before it was the radius of the track, but now there is no consistent radius for the track. What is this $R$ even used for again? Well, remember when we said that the arc from A to C must be equal to the arc from C to B?
 
-<img src="/spirographs/assets/inner4.jpg" />
+<img
+    src="/spirographs/assets/inner4.jpg"
+    alt="diagram demonstrating that rolling requires the length travelled around the track equals the amount the tracing wheel rolls"
+/>
 
 That idea still holds true since we're still rolling the tracing wheel! Calculating the exact length of that arc for an ellipse gets more complicated, so for now we can introduce an approximation. We might not know the exact arc length of the ellipse, but we can know the perimeter of the ellipse:
 
@@ -112,17 +115,26 @@ Hey! That looks pretty good! Wait, what is that?!
 
 The problem is that we still haven't edited that second term, meaning the center of our rotating wheel isn't correct. Let's look at a diagram from Chapter 1 when we were working with a circular track:
 
-<img src="/spirographs/assets/inner2.jpg" />
+<img
+    src="/spirographs/assets/inner2.jpg"
+    alt="diagram with circular track, starting position of the tracing wheel, and ending position of the tracing wheel"
+/>
 
 Notice how the point of tangency (point $C$) is collinear with the centers of the two wheels (points $F$ and $M_1$). This means that the parametric function $(R - r)(cos(\alpha) + sin(\alpha))$ perfectly describes the position of that center point.
 
 Compare this with a diagram of an elliptical track:
 
-<img src="/spirographs/assets/ellipse3.jpg" />
+<img
+    src="/spirographs/assets/ellipse3.jpg"
+    alt="diagram with an elliptical track and the starting and ending positions of the tracing wheel"
+/>
 
 The point of tangency and the two centers are no longer collinear, so the equation $(Acos(\alpha), Bsin(\alpha)) - r(cos(\alpha), sin(\alpha))$ no longer describes the center of the rotating circle. We'll need something more sophisticated. To find the offset of $M_1$ from $C_1$, let's find the slope of $\overline{C_1M_1}$.
 
-<img src="/spirographs/assets/ellipse4.jpg" />
+<img
+    src="/spirographs/assets/ellipse4.jpg"
+    alt="diagram with an elliptical track with trangles showing the position M relative to point C"
+/>
 
 To find this slope, (equal to $tan(\theta)$), notice how that it's perpendicular to the line tangent with the ellipse at point $C_1$ (equal to $tan(\theta + \frac{\pi}{2})$). And finding the slope of the tangent line is nothing a little calculus (and our favorite trig identities) can't handle!
 
