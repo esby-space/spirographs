@@ -1,17 +1,14 @@
 import { defineConfig } from "astro/config";
-import remarkMath from "remark-math";
-import rehypeMathJax from "rehype-mathjax";
 
-// https://astro.build/config
 import mdx from "@astrojs/mdx";
+import math from "remark-math";
+import katex from "rehype-mathjax";
 
-// https://astro.build/config
 export default defineConfig({
-    site: "https://esby-space.github.io",
-    base: "/spirographs",
+    site: "https://spirographs.esby.space",
     integrations: [mdx()],
     markdown: {
-        remarkPlugins: [remarkMath],
-        rehypePlugins: [rehypeMathJax],
+        remarkPlugins: [math],
+        rehypePlugins: [katex],
     },
 });

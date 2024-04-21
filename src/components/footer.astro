@@ -25,19 +25,19 @@ const { chapter = null } = Astro.props;
     </p>
 </footer>
 
-<style>
+<style is:global>
     footer {
         margin-block: 4rem;
     }
 
-    nav {
+    footer nav {
         display: flex;
         margin-block: 1rem;
         justify-content: space-evenly;
     }
 
-    nav a,
-    nav span {
+    footer nav a,
+    footer nav span {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -51,18 +51,18 @@ const { chapter = null } = Astro.props;
         transition: all 0.2s;
     }
 
-    [data-current] {
+    footer [data-current] {
         font-weight: bold;
         cursor: default;
         background-color: tomato;
     }
 
-    nav a:hover,
-    nav span:hover {
+    footer nav a:hover,
+    footer nav span:hover {
         background-color: tomato;
     }
 
-    p {
+    footer p {
         color: grey;
         text-align: center;
     }
